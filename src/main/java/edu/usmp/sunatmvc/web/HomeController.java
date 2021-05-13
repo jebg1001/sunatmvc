@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 public class HomeController {
     private static final String MESSAGE_ATTRIBUTE = "message"; 
     //private static final String USER_INDEX= "user/login";
-    private static final String HOME_INDEX ="welcome"; 
+    private static final String HOME_INDEX ="login"; 
 
     @GetMapping("/")
     public String index(Model model) {
