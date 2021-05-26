@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
 
@@ -16,6 +17,7 @@ import edu.usmp.sunatmvc.domain.Factura;
 import edu.usmp.sunatmvc.repository.FacturaRepository;
 
 @RestController
+@RequestMapping(value = "api/factura", produces = "application/json")
 public class FacturaController {
 
     private FacturaRepository facturaRepository;
@@ -25,13 +27,13 @@ public class FacturaController {
     }
 
 
-    @GetMapping(value = "/facturas", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Factura>> facturas() {
         return new ResponseEntity<List<Factura>>(
             facturaRepository.findAll(),HttpStatus.OK);
     }
 
-    @GetMapping(value = "/factura/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Factura> facturas(@PathVariable int id){
         Optional<Factura> optionalEntity = facturaRepository.findById(id);
         if(optionalEntity.isPresent()){
@@ -41,14 +43,14 @@ public class FacturaController {
         }
     }
 
-    @PostMapping(value = "/factura", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Factura> create(@RequestBody Factura f){
         facturaRepository.save(f);
         facturaRepository.flush();
         return new ResponseEntity<Factura>(f,  HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/factura", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Factura> update (@RequestBody Factura f){
         create(f);
         return new ResponseEntity<Factura>(HttpStatus.OK);
