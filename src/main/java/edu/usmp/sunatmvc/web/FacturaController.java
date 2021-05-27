@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
-
-import edu.usmp.sunatmvc.domain.Factura;
+import edu.usmp.sunatmvc.model.Factura;
 import edu.usmp.sunatmvc.repository.FacturaRepository;
 
 @RestController

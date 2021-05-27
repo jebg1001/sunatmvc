@@ -8,14 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import edu.usmp.sunatmvc.model.Factura;
+
 import java.io.IOException;
 import java.util.List;
-import edu.usmp.sunatmvc.domain.Factura;
-//import edu.usmp.sunatmvc.integration.api.GDHAPIRetrofit;
-//import retrofit2.Call;
-//import retrofit2.Response;
-//import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
 
 @Service
 public class GDHRetrofitService {

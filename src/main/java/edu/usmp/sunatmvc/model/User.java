@@ -1,4 +1,4 @@
-package edu.usmp.sunatmvc.domain;
+package edu.usmp.sunatmvc.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,5 +20,21 @@ public class User {
     @Column(name = "user_id")
     private String ruc;
     private String password;
+
+    public String getRuc() {
+        return this.ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
 }

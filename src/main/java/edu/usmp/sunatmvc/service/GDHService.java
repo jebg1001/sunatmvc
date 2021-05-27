@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import edu.usmp.sunatmvc.domain.Factura;
 import edu.usmp.sunatmvc.integration.api.GDHAPI;
 import edu.usmp.sunatmvc.integration.api.SUNATAPI;
+import edu.usmp.sunatmvc.model.Factura;
 
 @Service
 public class GDHService {

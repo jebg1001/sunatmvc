@@ -7,7 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import edu.usmp.sunatmvc.domain.Factura;
+import edu.usmp.sunatmvc.model.Factura;
 
 import org.springframework.stereotype.Service;
 

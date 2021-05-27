@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import edu.usmp.sunatmvc.domain.User;
+import edu.usmp.sunatmvc.model.User;
 import edu.usmp.sunatmvc.repository.UserRepository;
 
 import java.util.Optional;
