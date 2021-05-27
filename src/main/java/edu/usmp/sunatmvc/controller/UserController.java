@@ -1,4 +1,4 @@
-package edu.usmp.sunatmvc.web;
+package edu.usmp.sunatmvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,21 +17,21 @@ public class UserController {
 
     private final UserRepository userData;
     private static final String MESSAGE_ATTRIBUTE = "message"; 
-    private static final String USER_INDEX ="user/login";
-    private static final String HOME_INDEX ="user/lista"; 
+    private static final String USER_INDEX ="login";
+    private static final String HOME_INDEX ="home"; 
 
     public UserController(UserRepository userData) {
         this.userData = userData;
     }
 
-    @GetMapping("/user/login")
+    @GetMapping("/")
     public String index(Model model) {
         User usuario = new User();
         model.addAttribute("user", usuario);
         return USER_INDEX;
     }
 
-    @PostMapping("/user/login")
+    @PostMapping("/home")
     public String login(Model model,
         @Valid User objUser, BindingResult result 
         ){
