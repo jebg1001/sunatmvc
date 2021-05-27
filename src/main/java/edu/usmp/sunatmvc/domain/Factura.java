@@ -1,5 +1,10 @@
 package edu.usmp.sunatmvc.domain;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Date;
+import javax.persistence.PrePersist;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,5 +28,10 @@ public class Factura {
     private String descrip;
     private String razonSoc;
     private Integer montoIGV;
+    private ZonedDateTime date;
+    @PrePersist
+    void addTimestamp() {
+    date = ZonedDateTime.now();
+    }
     
 }
