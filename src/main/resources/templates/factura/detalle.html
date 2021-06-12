@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" 
+    th:replace="~{fragments/layout :: layout (~{::body},'factura')}"/>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/cerulean/bootstrap.min.css" integrity="sha512-u5+wLyKje1GFWkxtj9SBywNE4jmbgXUVJU24sDC4LShQksachiXuDS6syD75F414AiATXhV7eTqFO7kegoRu1g==" crossorigin="anonymous" />
+    <link th:href = "@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body class="body">
+
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mt-5 mb-5">
+            <h2>Facturas</h2><br/>
+            <table id="example" class="table table-bordered table-responsive" style="width: 100%">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>RUC Emisor</th>
+                  <th>RUC Contribuyente</th>
+                  <th>Monto</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td th:text="${factura.id}"></td>
+                  <td th:text="${factura.rucEmisor}"></td>
+                  <td th:text="${factura.rucContribuyente}"></td>
+                  <td th:text="${factura.montoFactura}"></td>
+                  <td th:text="${factura.date}"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+
+</body>
+</html>
