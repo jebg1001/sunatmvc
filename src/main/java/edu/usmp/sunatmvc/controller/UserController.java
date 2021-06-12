@@ -31,7 +31,7 @@ public class UserController {
         return USER_INDEX;
     }
 
-    @PostMapping("/home")
+    @PostMapping("/index")
     public String login(Model model,
         @Valid User objUser, BindingResult result 
         ){
