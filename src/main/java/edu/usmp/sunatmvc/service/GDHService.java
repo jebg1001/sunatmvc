@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.usmp.sunatmvc.dto.Factura;
+import edu.usmp.sunatmvc.model.Fact;
 import edu.usmp.sunatmvc.integration.api.SUNATAPI;
 
 @Service
@@ -23,4 +24,7 @@ public class GDHService {
         return facturasValid;
     }
 
+    public void addValidFactura(Fact f){
+        sunatAPI.postFactura(f);
+    }
 }

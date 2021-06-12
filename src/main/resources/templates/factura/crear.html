@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" 
+    th:replace="~{fragments/layout :: layout (~{::body},'factura')}"/>
+
+<body class="body">
+ 
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-10 mt-5">
+                <div class="form-group row">
+                    <h1>Crear Factura</h1>
+                </div>
+                <form th:object="${factura}" th:action="@{/factura/crear}" method="post">
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label for="rucEmisor">Ruc Emisor</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" th:field="*{rucEmisor}" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label for="rucContribuyente">Ruc Contribuyente</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" th:field="*{rucContribuyente}" />
+                        </div>
+                    </div>              
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label for="montoFactura">Monto</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" th:field="*{montoFactura}" />
+                        </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <button th:with="text='Registrar'" class="btn btn-primary" type="submit" th:text="${text}"/>
+                        </div>
+                    </div>
+                </form>
+                <p th:text="${mensaje}" />
+            </div>
+        </div>
+    </div>
+    
+      <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+      <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+      <script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+      <script th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"></script>    
+  
+      <script>
+        $('.input-group.date').datepicker({
+          autoclose: true,
+          todayHighlight: true
+        });
+      </script>
+      <script>
+        $(":input").inputmask();
+      </script>
+</body>
+
+</html>

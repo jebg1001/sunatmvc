@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import edu.usmp.sunatmvc.dto.Factura;
+import edu.usmp.sunatmvc.model.Fact;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class SUNATAPI {
     
     @Value("${appexternal.endpoint.get.facturas}")
     private String URL_GET_FACTURAS;
+
+    @Value("${appexternal.endpoint.post.facturas}")
+    private String URL_POST_FACTURA;
 
     private RestTemplate restTemplate;
 
@@ -31,5 +35,15 @@ public class SUNATAPI {
                                     HttpEntity.EMPTY,
                                     new ParameterizedTypeReference<List<Factura>>(){});
         return response.getBody();
+    }
+
+    public void postFactura(Fact f){
+        HttpEntity<Fact> bodyRequest = new  HttpEntity<Fact>(f);
+        ResponseEntity<String> response = 
+            restTemplate.exchange(URL_POST_FACTURA,
+                    HttpMethod.POST,
+                    bodyRequest,
+                    new ParameterizedTypeReference<String>(){}
+            );
     }
 }
