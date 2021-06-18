@@ -6,22 +6,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import edu.usmp.sunatmvc.model.User;
+import edu.usmp.sunatmvc.model.Fact;
 import edu.usmp.sunatmvc.repository.UserRepository;
 
 import java.util.Optional;
 
 import javax.validation.Valid;
+import edu.usmp.sunatmvc.service.GDHService;
 import org.springframework.validation.BindingResult;
 @Controller
 public class UserController {
 
     private final UserRepository userData;
+    private final GDHService gdhService;
     private static final String MESSAGE_ATTRIBUTE = "message"; 
     private static final String USER_INDEX ="login";
     private static final String HOME_INDEX ="index"; 
 
-    public UserController(UserRepository userData) {
+    public UserController(UserRepository userData, GDHService gdhService) {
         this.userData = userData;
+        this.gdhService = gdhService;
     }
 
     @GetMapping("/")
@@ -43,7 +47,7 @@ public class UserController {
            Optional<User> userDB = this.userData.findById(objUser.getRuc());
            if(userDB.isPresent()){
                 if(objUser.getPassword().equals(userDB.get().getPassword())){
-                    model.addAttribute(MESSAGE_ATTRIBUTE, "Ingreso Satisfactorio");
+                    model.addAttribute("factura", new Fact());
                     page = HOME_INDEX;
                 }else{
                     model.addAttribute(MESSAGE_ATTRIBUTE, "Password no coincide");
@@ -56,6 +60,19 @@ public class UserController {
         }
         return page;
 
+    }
+
+    @PostMapping("/login/crear")
+    public String createSubmitForm(Model model, 
+        Fact objFact, BindingResult result ){
+        if(result.hasFieldErrors()) {
+            model.addAttribute("mensaje", "No se registro factura");
+        }else{
+            gdhService.addValidFactura(objFact);
+            model.addAttribute("factura", objFact);
+            model.addAttribute("mensaje", "Se registro factura");
+        }
+        return HOME_INDEX;
     }
 }
 

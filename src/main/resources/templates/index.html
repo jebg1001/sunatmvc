@@ -13,155 +13,53 @@
 <body class="body">
 
 
-
-
 <div class="container pt-5">
    <div class="card border-primary mb-3" style="max-width: 80rem;">
         <div class="card border-secondary mb-3" style="max-width: 80rem;">
-             <div class="card-header">Indique los datos del usuario al que le prestó el servicio</div>
+             <div class="card-header">Indique los datos de la factura a realizar</div>
              <div class="card-body">
                 <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-5">
-                        <h6>Tipo de Documento</h6>
+                    <form th:object="${factura}" th:action="@{/login/crear}" method="post">
+                        <div class="row">
+                            <div class="col-sm-5">
+                            <h6>RUC del Emisor</h6>
+                            </div>
+
+                            <div class="col-sm-7">
+                                <input type="text" th:field="*{rucEmisor}" />
+                            </div>
                         </div>
 
-                        <div class="col-sm-7">
-                            <p class="bold">RUC</p>
-                        </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                            <h6>RUC del Contribuyente</h6>
+                            </div>
 
-                    <div class="row">
-                        <div class="col-sm-5">
-                        <h6>Número o documento de Identidad</h6>
-                        </div>
-
-                        <div class="col-sm-7">
-                            <p class="bold">2000000045</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-5">
-                        <h6>Nombre o Razón Social</h6>
+                            <div class="col-sm-7">
+                                <input type="text" th:field="*{rucContribuyente}" />
+                            </div>
                         </div>
 
-                        <div class="col-sm-7">
-                            <p class="bold">Universidad de San Martín de Porres</p>
+                        <div class="row">
+                            <div class="col-sm-5">
+                            <h6>Monto</h6>
+                            </div>
+
+                            <div class="col-sm-7">
+                                <input type="text" th:field="*{montoFactura}" />
+                            </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="container text-center pt-3">
+                                <button th:with="text='Registrar'" class="btn btn-primary" type="submit" th:text="${text}"/>
+                            </div>
+                        </div>
+                    </form>
                 </div>
              </div>
         </div>
     </div>
 </div>
-
-<div class="container pt-5">
-  <div class="card border-primary mb-3" style="max-width: 80rem;">
-       <div class="card border-secondary mb-3" style="max-width: 80rem;">
-            <div class="card-body">
-              <div class="container p-4">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="row">
-                             <div class="col-sm-5 ">
-                    <h6>Descripción o tipo de servicio prestado</h6>
-                    </div>
-            
-                    <div class="col-sm-7 ">
-                        <div class="form-group">
-                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                          </div>
-                    </div>
-                        </div>
-                       
-                    </div>
-                    
-                </div>
-            </div>
-            </div>
-       </div>
-   </div>
-</div>
-
-
-
-<div class="container pt-5">
-    <div class="card border-primary mb-3" style="max-width: 80rem;">
-         <div class="card border-secondary mb-3" style="max-width: 80rem;">
-              <div class="card-header">Indique el monto de los honorarios</div>
-              <div class="card-body">
-                 <div class="col-sm-12">
-                     <div class="row">
-                         <div class="col-sm-5">
-                         <h6>Tipo de Moneda</h6>
-                         </div>
- 
-                         <div class="col-sm-7">
-                            <div class="form-group">
-                                <select class="form-select" id="exampleSelect1">
-                                  <option>SOL</option>
-                                  <option>DOLAR</option>
-                                </select>
-                              </div>
-                         </div>
-                     </div>
- 
-                     <div class="row">
-                         <div class="col-sm-5">
-                         <h6>Monto Total de los Honorarios</h6>
-                         </div>
- 
-                         <div class="col-sm-7">
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                  <input type="text"  class="form-control input-lg" >
-                                </div>
-                              </div>
-                         </div>
-                     </div>
- 
-                     <div class="row">
-                         <div class="col-sm-5">
-                         <h6>Retención (8%) Impuesto a la Renta</h6>
-                         </div>
- 
-                         <div class="col-sm-7">
-                            <div class="form-group">
-                                <fieldset>
-                                  <input class="form-control" id="readOnlyInput" type="text" placeholder="160.00" readonly="">
-                                </fieldset>
-                              </div>
-                         </div>
-                     </div>
-
-                     <div class="row">
-                        <div class="col-sm-5">
-                        <h6>Total Neto Recibido</h6>
-                        </div>
-
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <fieldset>
-                                  <input class="form-control" id="readOnlyInput" type="text" placeholder="1,840.00" readonly="">
-                                </fieldset>
-                              </div>
-                         </div>
-                        </div>
-
-                        <div class="container text-center pt-3">
-                           <a th:action="@{/tabla}"  class="btn btn-primary m-3"> Continuar</a>
-                            <button type="button" class="btn btn-danger">Volver</button>
-                        </div>
-
-                    </div>
-
-
-                 </div>
-              </div>
-         </div>
-     </div>
- </div>
  
  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
  <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>

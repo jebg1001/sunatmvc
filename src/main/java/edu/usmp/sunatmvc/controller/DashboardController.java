@@ -1,26 +1,44 @@
 package edu.usmp.sunatmvc.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import java.util.*;
-import edu.usmp.sunatmvc.repository.*;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
-@RestController
-@RequestMapping(value = "api/dashboard", produces = "application/json")
+import edu.usmp.sunatmvc.service.GDHService;
+import edu.usmp.sunatmvc.dto.Factura;
+
+@Controller
 public class DashboardController {
-    private final FacturaRepository factData;
 
-    public DashboardController(FacturaRepository factData){
-        this.factData = factData;
+    private final GDHService service;
+    private static final String DASHBOARD_INDEX="dashboard";
+
+    public DashboardController(GDHService service) {
+        this.service = service;
     } 
 
-    @GetMapping(value = "/facturas", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Map<String, Object>>> employees(){
-        return  new ResponseEntity<List<Map<String, Object>>>(
-            factData.queryByrucContribuyente(), HttpStatus.OK);
+    @GetMapping("dashboard")
+    public String index(Model model) {
+        List<Factura> facturas = service.getValidFacturas();
+        int count=0;
+        BigDecimal monto=new java.math.BigDecimal("0.00");;
+        ZonedDateTime fecha=ZonedDateTime.now();
+        for (Factura factura : facturas) {
+            count++;
+            monto=monto.add(factura.getMontoFactura());
+            fecha=factura.getDate();
+        }
+
+        model.addAttribute("numClientes",count);
+        model.addAttribute("cantEmisores",count);
+        model.addAttribute("cantContrib",count);
+        model.addAttribute("cantDinero",monto);
+        model.addAttribute("fecha",fecha);
+        return DASHBOARD_INDEX;
     }
 }

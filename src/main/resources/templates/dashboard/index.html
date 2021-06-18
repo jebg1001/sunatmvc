@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" 
-    th:replace="~{fragments/layout :: layout (~{::body},'dashboard')}"/>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,7 @@
                 <div class="card border-danger mb-3" style="max-width: 20rem;">
                     <div class="card-header"> Numero de clientes </div>
                     <div class="card-body pt-4 pb-4">
-                        <h4 class="card-title">56464646</h4>
+                        <h4 class="card-title" th:text="${numClientes}"></h4>
                     </div>
                 </div>
             </div>
@@ -28,7 +27,7 @@
                 <div class="card border-primary mb-3" style="max-width: 20rem;">
                     <div class="card-header"> Cantidad de emisores de dinero </div>
                     <div class="card-body pt-4 pb-4">
-                        <h4 class="card-title"> 454541</h4>
+                        <h4 class="card-title" th:text="${cantEmisores}"></h4>
                     </div>
                 </div>
             </div>
@@ -36,7 +35,7 @@
                 <div class="card border-success mb-3" style="max-width: 20rem;">
                     <div class="card-header"> Cantidad de contribuyentes </div>
                     <div class="card-body pt-4 pb-4">
-                        <h4 class="card-title">4546500</h4>
+                        <h4 class="card-title" th:text="${cantContrib}"></h4>
                     </div>
                 </div>
             </div>
@@ -47,7 +46,7 @@
                 <div class="card border-warning mb-3" style="max-width: 50rem;">
                     <div class="card-header"> Cantidad de dinero transaccionado </div>
                     <div class="card-body pt-4 pb-4">
-                        <h4 class="card-title">108560 </h4>
+                        <h4 class="card-title" th:text="${cantDinero}"></h4>
                     </div>
                   </div>
             </div>
@@ -55,7 +54,7 @@
                 <div class="card border-dark mb-3" style="max-width: 50rem;">
                     <div class="card-header"> Fecha </div>
                     <div class="card-body pt-4 pb-4">
-                        <h4 class="card-title">11/06/2021</h4>
+                        <h4 class="card-title" th:text="${fecha}"></h4>
                     </div>
                   </div>
             </div>
