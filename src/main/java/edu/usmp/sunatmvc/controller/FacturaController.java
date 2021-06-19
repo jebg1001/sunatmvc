@@ -17,7 +17,7 @@ import org.springframework.validation.BindingResult;
 public class FacturaController {
     
     private final GDHService gdhService;
-    private static final String FACTURA_INDEX = "factura/index";
+    private static final String FACTURA_INDEX = "factura";
     private static final String CREAR_INDEX = "factura/crear";
 
     public FacturaController(GDHService gdhService) {
