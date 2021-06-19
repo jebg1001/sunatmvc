@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import java.util.*;
 import java.math.BigDecimal;
@@ -16,22 +17,22 @@ import edu.usmp.sunatmvc.dto.Factura;
 public class DashboardController {
 
     private final GDHService service;
-    private static final String DASHBOARD_INDEX="dashboard";
+    private static final String DASHBOARD_INDEX="dashboard/index";
 
     public DashboardController(GDHService service) {
         this.service = service;
     } 
 
-    @GetMapping("dashboard")
+    @RequestMapping("/dashboard")
     public String index(Model model) {
         List<Factura> facturas = service.getValidFacturas();
         int count=0;
-        BigDecimal monto=new java.math.BigDecimal("0.00");;
-        ZonedDateTime fecha=ZonedDateTime.now();
+        BigDecimal monto=new java.math.BigDecimal("0.01");
+        ZonedDateTime fecha = ZonedDateTime.now();
         for (Factura factura : facturas) {
             count++;
             monto=monto.add(factura.getMontoFactura());
-            fecha=factura.getDate();
+            fecha= factura.getDate();
         }
 
         model.addAttribute("numClientes",count);
