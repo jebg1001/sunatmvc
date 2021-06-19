@@ -18,18 +18,16 @@ import org.springframework.validation.BindingResult;
 public class UserController {
 
     private final UserRepository userData;
-    private final GDHService gdhService;
     private static final String MESSAGE_ATTRIBUTE = "message"; 
     private static final String USER_INDEX ="login";
-    private static final String HOME_INDEX ="index"; 
+    private static final String HOME_INDEX ="home/index"; 
 
-    public UserController(UserRepository userData, GDHService gdhService) {
+    public UserController(UserRepository userData) {
         this.userData = userData;
-        this.gdhService = gdhService;
     }
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String login(Model model) {
         User usuario = new User();
         model.addAttribute("user", usuario);
         return USER_INDEX;
@@ -59,20 +57,7 @@ public class UserController {
            }
         }
         return page;
-
     }
 
-    @PostMapping("/login/crear")
-    public String createSubmitForm(Model model, 
-        Fact objFact, BindingResult result ){
-        if(result.hasFieldErrors()) {
-            model.addAttribute("mensaje", "No se registro factura");
-        }else{
-            gdhService.addValidFactura(objFact);
-            model.addAttribute("factura", objFact);
-            model.addAttribute("mensaje", "Se registro factura");
-        }
-        return HOME_INDEX;
-    }
 }
 
